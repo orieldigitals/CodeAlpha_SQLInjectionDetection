@@ -8,11 +8,12 @@ from reportlab.lib.pagesizes import letter
 from flask import send_file
 
 import datetime
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
-app.secret_key = Config.SECRET_KEY
+app.secret_key = os.getenv("SECRET_KEY", "dev-fallback-key")
 
 db.init_app(app)
 
