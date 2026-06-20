@@ -1,4 +1,4 @@
-# SQL Injection Detection System
+# Code Alpha SQL Injection Detection System
 
 ## Overview
 
@@ -307,22 +307,6 @@ SELECT * FROM users WHERE id=1; EXEC xp_cmdshell('dir');
 
 ---
 
-## Screenshots
-
-The following screenshots demonstrate the application.
-
-* Login Screen
-* SQL Scanner
-* Scan Results
-* Security Explanation
-* Dashboard
-* History Page
-* PDF Report
-
-(Add screenshots after deployment.)
-
----
-
 ## Future Improvements
 
 Possible future enhancements include:
@@ -371,7 +355,7 @@ This project demonstrates practical experience with:
 
 Cloud Engineer | DevOps Enthusiast | Backend Developer | Cybersecurity Learner
 
-GitHub: https://github.com/yourusername
+Render Url: https://
 
 LinkedIn: www.linkedin.com/in/hope-bongnwi
 
