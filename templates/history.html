@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card p-4">
+
+    <h2 style="color:#ffffff;font-weight:800;">
+        Scan History
+    </h2>
+
+    <p style="color:#cbd5e1;">
+        View all previously scanned SQL queries, their detected risk level,
+        risk score and scan date.
+    </p>
+
+    {% if scans %}
+
+    <table class="table table-dark table-hover align-middle mt-4">
+
+        <thead>
+
+            <tr>
+
+                <th style="color:#ffffff;">SQL Query</th>
+
+                <th style="color:#ffffff;">Risk Level</th>
+
+                <th style="color:#ffffff;">Score</th>
+
+                <th style="color:#ffffff;">Scan Date</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for scan in scans %}
+
+            <tr>
+
+                <td style="max-width:420px;word-break:break-word;">
+                    {{ scan.query }}
+                </td>
+
+                <td>
+
+                    {% if scan.result == "Safe" %}
+
+                        <span class="badge bg-success">
+                            SAFE
+                        </span>
+
+                    {% elif scan.result == "Low" %}
+
+                        <span class="badge bg-warning text-dark">
+                            LOW
+                        </span>
+
+                    {% elif scan.result == "Medium" %}
+
+                        <span class="badge bg-orange">
+                            MEDIUM
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-danger">
+                            HIGH
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>{{ scan.risk_score }}</td>
+
+                <td>{{ scan.created_at }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="text-center p-5">
+
+        <h4 style="color:#ffffff;">
+            No scans available yet.
+        </h4>
+
+        <p style="color:#94a3b8;">
+            Scan your first SQL query and it will appear here.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

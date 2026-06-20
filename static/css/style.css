@@ -1,0 +1,108 @@
+body {
+    background: #0b1220;
+    color: #f8fafc;   /* Changed to milk white */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.navbar {
+    background: #0f172a;
+    border-bottom: 1px solid #1f2937;
+}
+
+.container {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+/* CARD IMPROVEMENT */
+.card {
+    background: #111827;
+    color: #f8fafc;   /* Makes all text inside cards milk white */
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* HEADINGS */
+h1, h2, h3, h4 {
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+/* LABELS */
+label {
+    color: #f8fafc;
+}
+
+/* PARAGRAPHS */
+p {
+    color: #f8fafc;
+}
+
+/* LISTS */
+li {
+    color: #f8fafc;
+}
+
+/* TABLE TEXT */
+table,
+th,
+td {
+    color: #f8fafc !important;
+}
+
+/* TEXTAREA */
+textarea {
+    width: 100%;
+    background: #0b1220;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: #cbd5e1;
+}
+
+textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: #2563eb;
+    border: none;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+/* RISK BADGES */
+.badge-box {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.risk-safe { color: #22c55e; }
+.risk-low { color: #eab308; }
+.risk-medium { color: #f97316; }
+.risk-high { color: #ef4444; }
+
+/* FOOTER */
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+}

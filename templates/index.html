@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- =========================
+     DASHBOARD STATISTICS
+========================= -->
+
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card text-center p-3">
+            <h5 style="color:#f8fafc;font-weight:700;">Total Scans</h5>
+            <h2 style="color:#ffffff;font-weight:800;font-size:2.3rem;">
+                {{ total }}
+            </h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3">
+            <h5 style="color:#f8fafc;font-weight:700;">High Risk</h5>
+            <h2 style="color:#ef4444;font-weight:800;font-size:2.3rem;">
+                {{ high }}
+            </h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3">
+            <h5 style="color:#f8fafc;font-weight:700;">Medium Risk</h5>
+            <h2 style="color:#f97316;font-weight:800;font-size:2.3rem;">
+                {{ medium }}
+            </h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center p-3">
+            <h5 style="color:#f8fafc;font-weight:700;">Safe Queries</h5>
+            <h2 style="color:#22c55e;font-weight:800;font-size:2.3rem;">
+                {{ safe }}
+            </h2>
+        </div>
+    </div>
+
+</div>
+
+<!-- =========================
+     SQL SCANNER
+========================= -->
+
+<div class="card p-4">
+
+    <h2 style="color:#ffffff;font-weight:800;">
+        SQL Injection Detection Engine
+    </h2>
+
+    <p style="color:#cbd5e1;">
+        Paste a SQL query below to analyse it for potential SQL Injection vulnerabilities.
+    </p>
+
+    <div class="mb-3">
+        <a href="/export-report" class="btn btn-outline-info">
+             📄 Export Security Report (PDF)
+        </a>
+    </div>
+
+    <form method="POST" action="/scan">
+
+        <label class="form-label" style="color:#ffffff;font-weight:700;">
+            Enter SQL Query
+        </label>
+
+        <textarea
+            name="query"
+            rows="6"
+            class="form-control"
+            placeholder="Example: SELECT * FROM users WHERE id=1 OR 1=1"></textarea>
+
+        <br>
+
+        <button class="btn btn-primary w-100">
+            Scan Query
+        </button>
+
+    </form>
+
+</div>
+
+<!-- =========================
+     SCAN RESULT
+========================= -->
+
+{% if result %}
+
+<div class="card p-4 mt-4">
+
+    <h4 style="color:#ffffff;font-weight:700;">
+        Scan Result
+    </h4>
+
+    {% set risk = result.risk %}
+
+    <p style="color:#e2e8f0;">
+
+        <strong>Risk Level:</strong>
+
+        {% if risk == "Safe" %}
+            <span class="badge-box risk-safe">SAFE</span>
+        {% elif risk == "Low" %}
+            <span class="badge-box risk-low">LOW</span>
+        {% elif risk == "Medium" %}
+            <span class="badge-box risk-medium">MEDIUM</span>
+        {% else %}
+            <span class="badge-box risk-high">HIGH</span>
+        {% endif %}
+
+    </p>
+
+    <p style="color:#ffffff;">
+        <strong>Score:</strong> {{ result.score }}
+    </p>
+
+    <p style="color:#ffffff;">
+        <strong>Detected Patterns</strong>
+    </p>
+
+    <ul>
+        {% for match in result.matches %}
+        <li style="color:#e2e8f0;">
+            {{ match }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- =========================
+         SECURITY EXPLANATION (NEW)
+    ========================= -->
+
+    {% if result.explanations %}
+
+    <div class="mt-3">
+
+        <h5 style="font-weight:800; color:#ffffff;">
+            Security Explanation
+        </h5>
+
+        <div class="alert"
+             style="background:#0b1220;
+                    border:1px solid #334155;
+                    color:#e2e8f0;">
+
+            <ul style="margin:0; padding-left:18px;">
+
+                {% for item in result.explanations %}
+                    <li style="margin-bottom:6px;">{{ item }}</li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}
